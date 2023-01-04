@@ -3,7 +3,7 @@
 use Peerme\MxProviders\Api\Endpoints\VmEndpoints;
 
 it('queries a multiresult smart contract view successfully', function () {
-    $client = createMockedHttpClientWithResponseFile('vm/ok-multiresult2.json');
+    $client = createMockedHttpClientWithResponse('vm/ok-multiresult2.json');
 
     $actual = (new VmEndpoints($client))
         ->query('erd1qqqqqqqqqqqqqpgq6n6efmj9slp33s67jjralruh64ku0dd0yt2sumuhtq', 'getImageNftIdByAddress', [

@@ -3,7 +3,7 @@
 use Peerme\MxProviders\Api\Endpoints\DexEndpoints;
 
 it('gets dex pairs', function () {
-    $client = createMockedHttpClientWithResponseFile('mex/pairs.json');
+    $client = createMockedHttpClientWithResponse('mex/pairs.json');
 
     $actual = (new DexEndpoints($client))
         ->getPairs();
@@ -12,7 +12,7 @@ it('gets dex pairs', function () {
 });
 
 it('gets mex tokens', function () {
-    $client = createMockedHttpClientWithResponseFile('mex/tokens.json');
+    $client = createMockedHttpClientWithResponse('mex/tokens.json');
 
     $actual = (new DexEndpoints($client))
         ->getTokens();

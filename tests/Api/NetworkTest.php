@@ -3,7 +3,7 @@
 use Peerme\MxProviders\Api\Endpoints\NetworkEndpoints;
 
 it('gets economics', function () {
-    $client = createMockedHttpClientWithResponseFile('network/economics.json');
+    $client = createMockedHttpClientWithResponse('network/economics.json');
 
     $actual = (new NetworkEndpoints($client))
         ->getEconomics();
@@ -12,7 +12,7 @@ it('gets economics', function () {
 });
 
 it('gets constants', function () {
-    $client = createMockedHttpClientWithResponseFile('network/constants.json');
+    $client = createMockedHttpClientWithResponse('network/constants.json');
 
     $actual = (new NetworkEndpoints($client))
         ->getNetworkConstants();

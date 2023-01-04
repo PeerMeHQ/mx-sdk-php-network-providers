@@ -5,7 +5,7 @@ use Peerme\MxProviders\Api\Endpoints\AccountEndpoints;
 use Peerme\MxProviders\Entities\Nft;
 
 it('getByAddress - gets an account by address', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/account.json');
+    $client = createMockedHttpClientWithResponse('accounts/account.json');
 
     $actual = (new AccountEndpoints($client))
         ->getByAddress('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
@@ -16,7 +16,7 @@ it('getByAddress - gets an account by address', function () {
 });
 
 it('getNfts - gets an accounts nfts', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/nfts.json');
+    $client = createMockedHttpClientWithResponse('accounts/nfts.json');
 
     $actual = (new AccountEndpoints($client))
         ->getNfts('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
@@ -28,7 +28,7 @@ it('getNfts - gets an accounts nfts', function () {
 });
 
 it('getTokens - gets tokens owned by an account', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/tokens.json');
+    $client = createMockedHttpClientWithResponse('accounts/tokens.json');
 
     $actual = (new AccountEndpoints($client))
         ->getTokens('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
@@ -37,7 +37,7 @@ it('getTokens - gets tokens owned by an account', function () {
 });
 
 it('getToken - gets a specifc token owned by an account', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/token-with-balance.json');
+    $client = createMockedHttpClientWithResponse('accounts/token-with-balance.json');
 
     $actual = (new AccountEndpoints($client))
         ->getToken('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc', 'WHALE-b018f0');
@@ -49,7 +49,7 @@ it('getToken - gets a specifc token owned by an account', function () {
 });
 
 it('getCollections - gets collections owned by the user', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/collections.json');
+    $client = createMockedHttpClientWithResponse('accounts/collections.json');
 
     $actual = (new AccountEndpoints($client))
         ->getCollections('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
@@ -58,7 +58,7 @@ it('getCollections - gets collections owned by the user', function () {
 });
 
 it('getCollection - gets collection owned by the user and given id', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/collection.json');
+    $client = createMockedHttpClientWithResponse('accounts/collection.json');
 
     $actual = (new AccountEndpoints($client))
         ->getCollection('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc', 'EVOLUTIONS-570eff');
@@ -68,7 +68,7 @@ it('getCollection - gets collection owned by the user and given id', function ()
 
 
 it('getRolesCollections - gets role collections owned by the user', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/role-collections.json');
+    $client = createMockedHttpClientWithResponse('accounts/role-collections.json');
 
     $actual = (new AccountEndpoints($client))
         ->getRolesCollections('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
@@ -77,7 +77,7 @@ it('getRolesCollections - gets role collections owned by the user', function () 
 });
 
 it('getRolesCollection - gets collection owned by the user and given id', function () {
-    $client = createMockedHttpClientWithResponseFile('accounts/role-collection.json');
+    $client = createMockedHttpClientWithResponse('accounts/role-collection.json');
 
     $actual = (new AccountEndpoints($client))
         ->getRolesCollection('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc', 'SING-3c59b4');

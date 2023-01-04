@@ -8,19 +8,16 @@ use Spatie\Snapshots\MatchesSnapshots;
 
 uses(MatchesSnapshots::class)->in(__DIR__);
 
-function createMockedHttpClientWithResponseValue($value): ClientInterface
+function createMockedHttpClientWithResponse(array|string|int $value): ClientInterface
 {
-    $expectedResponse = new Response(200, [], $value);
+    $contents = is_string($value) && str_ends_with($value, '.json')
+            ? file_get_contents(__DIR__ . '/Api/responses/' . $value)
+            : $value;
+
+    $expectedResponse = new Response(200, [], $contents);
     $transactions = [];
 
     return ClientFactory::mock($expectedResponse, $transactions);
-}
-
-function createMockedHttpClientWithResponseFile(string $fileName): ClientInterface
-{
-    $content = file_get_contents(__DIR__ . '/Api/responses/' . $fileName);
-
-    return createMockedHttpClientWithResponseValue($content);
 }
 
 function assertMatchesResponseSnapshot($actual): void

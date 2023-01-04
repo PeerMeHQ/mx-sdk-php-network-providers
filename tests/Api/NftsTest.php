@@ -4,7 +4,7 @@ use Peerme\MxProviders\Api\Endpoints\NftEndpoints;
 use Peerme\MxProviders\Entities\Nft;
 
 it('gets an nft by id', function () {
-    $client = createMockedHttpClientWithResponseFile('nfts/nft.json');
+    $client = createMockedHttpClientWithResponse('nfts/nft.json');
 
     $actual = (new NftEndpoints($client))
         ->getById('MARSHM1-021222-74');
@@ -18,7 +18,7 @@ it('gets an nft by id', function () {
 });
 
 it('gets the owner accounts of an nft', function () {
-    $client = createMockedHttpClientWithResponseFile('nfts/accounts.json');
+    $client = createMockedHttpClientWithResponse('nfts/accounts.json');
 
     $actual = (new NftEndpoints($client))
         ->getAccounts('SCYPERKS-025266-01');
