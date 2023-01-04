@@ -16,7 +16,7 @@ use Peerme\MxProviders\Api\Endpoints\VmEndpoints;
 final class ApiNetworkProvider
 {
     public function __construct(
-        private ClientInterface $client,
+        public readonly ClientInterface $client,
     ) {
     }
 

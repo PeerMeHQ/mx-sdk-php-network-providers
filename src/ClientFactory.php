@@ -21,21 +21,21 @@ class ClientFactory
         return new Client($options);
     }
 
-    public static function mock(ResponseInterface $responseMock, array &$transactions = []): ClientInterface
+    public static function mock(ResponseInterface $responseMock, array &$transactions = [], array $options = []): ClientInterface
     {
         $mockHandler = new MockHandler([$responseMock]);
         $handlerStack = HandlerStack::create($mockHandler);
         $handlerStack->push(Middleware::history($transactions));
 
-        return new Client(['handler' => $handlerStack]);
+        return new Client(['handler' => $handlerStack, ...$options]);
     }
 
-    public static function mockError(RequestExceptionInterface $error, array &$transactions = []): ClientInterface
+    public static function mockError(RequestExceptionInterface $error, array &$transactions = [], array $options = []): ClientInterface
     {
         $mockHandler = new MockHandler([$error]);
         $handlerStack = HandlerStack::create($mockHandler);
         $handlerStack->push(Middleware::history($transactions));
 
-        return new Client(['handler' => $handlerStack]);
+        return new Client(['handler' => $handlerStack, ...$options]);
     }
 }

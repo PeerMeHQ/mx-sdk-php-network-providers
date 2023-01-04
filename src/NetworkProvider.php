@@ -2,14 +2,15 @@
 
 namespace Peerme\MxProviders;
 
+use GuzzleHttp\ClientInterface;
 use Peerme\MxProviders\Api\ApiNetworkProvider;
 
 class NetworkProvider
 {
-    public static function api(string $baseUrl): ApiNetworkProvider
+    public static function api(string $baseUrl, ?ClientInterface $client = null): ApiNetworkProvider
     {
-        $client = ClientFactory::create($baseUrl);
-
-        return new ApiNetworkProvider($client);
+        return new ApiNetworkProvider(
+            $client ?? ClientFactory::create($baseUrl),
+        );
     }
 }
