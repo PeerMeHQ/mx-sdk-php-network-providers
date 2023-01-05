@@ -11,11 +11,15 @@ trait HasApiResponses
 {
     public array $rawResponse = [];
 
-    public static function fromApiResponse(ResponseInterface $res, bool $isCollection = false): IEntity|Collection
+    public static function fromApiResponse(ResponseInterface $res, bool $isCollection = false, bool $unwrapData = false): IEntity|Collection
     {
         static::throwIfError($res);
 
         $unpacked = json_decode($res->getBody()->getContents(), true);
+
+        if ($unwrapData) {
+            $unpacked = $unpacked['data'];
+        }
 
         return $isCollection
             ? static::fromArrayMultiple($unpacked)
@@ -24,9 +28,13 @@ trait HasApiResponses
 
     public static function fromArray(array $data): IEntity
     {
-        return new static(...static::filterUnallowedProperties(
+        $entity = new static(...static::filterUnallowedProperties(
             static::transformResponse($data)
         ));
+
+        $entity->rawResponse = $data;
+
+        return $entity;
     }
 
     public static function fromArrayMultiple(array $data): Collection
