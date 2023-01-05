@@ -20,11 +20,14 @@ class VmEndpoints
     {
         return VmQueryResult::fromApiResponse(
             $this->client->request('POST', "/vm-values/query", [
-                'scAddress' => $contractAddress,
-                'funcName' => $func,
-                'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
-                ...$params,
-            ], unwrapData: true)
+                'json' => [
+                    'scAddress' => $contractAddress,
+                    'funcName' => $func,
+                    'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
+                    ...$params,
+                ],
+            ]),
+            unwrapData: true,
         );
     }
 
@@ -32,11 +35,14 @@ class VmEndpoints
     {
         return VmHexResult::fromApiResponse(
             $this->client->request('POST', "/vm-values/hex", [
-                'scAddress' => $contractAddress,
-                'funcName' => $func,
-                'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
-                ...$params,
-            ], unwrapData: true)
+                'json' => [
+                    'scAddress' => $contractAddress,
+                    'funcName' => $func,
+                    'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
+                    ...$params,
+                ]
+            ]),
+            unwrapData: true,
         );
     }
 
@@ -44,11 +50,14 @@ class VmEndpoints
     {
         return VmStringResult::fromApiResponse(
             $this->client->request('POST', "/vm-values/string", [
-                'scAddress' => $contractAddress,
-                'funcName' => $func,
-                'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
-                ...$params,
-            ], unwrapData: true)
+                'json' => [
+                    'scAddress' => $contractAddress,
+                    'funcName' => $func,
+                    'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
+                    ...$params,
+                ],
+            ]),
+            unwrapData: true,
         );
     }
 
@@ -56,11 +65,14 @@ class VmEndpoints
     {
         return VmIntResult::fromApiResponse(
             $this->client->request('POST', "/vm-values/int", [
-                'scAddress' => $contractAddress,
-                'funcName' => $func,
-                'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
-                ...$params,
-            ], unwrapData: true)
+                'json' => [
+                    'scAddress' => $contractAddress,
+                    'funcName' => $func,
+                    'args' => collect($args)->map(fn ($a) => Encoder::toHex($a))->all(),
+                    ...$params,
+                ],
+            ]),
+            unwrapData: true,
         );
     }
 }
