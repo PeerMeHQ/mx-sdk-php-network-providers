@@ -18,12 +18,18 @@ class ClientFactory
             $options['base_uri'] = $baseUrl;
         }
 
+        $options['headers'] = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            ...$options['headers'] ?? [],
+        ];
+
         return new Client($options);
     }
 
-    public static function mock(ResponseInterface $responseMock, array &$transactions = [], array $options = []): ClientInterface
+    public static function mock(array $responses, array &$transactions = [], array $options = []): ClientInterface
     {
-        $mockHandler = new MockHandler([$responseMock]);
+        $mockHandler = new MockHandler($responses);
         $handlerStack = HandlerStack::create($mockHandler);
         $handlerStack->push(Middleware::history($transactions));
 

@@ -14,10 +14,10 @@ function createMockedHttpClientWithResponse(array|string|int $value): ClientInte
             ? file_get_contents(__DIR__ . '/Api/responses/' . $value)
             : $value;
 
-    $expectedResponse = new Response(200, [], $contents);
+    $response = new Response(200, [], $contents);
     $transactions = [];
 
-    return ClientFactory::mock($expectedResponse, $transactions);
+    return ClientFactory::mock([$response], $transactions);
 }
 
 function assertMatchesResponseSnapshot($actual): void

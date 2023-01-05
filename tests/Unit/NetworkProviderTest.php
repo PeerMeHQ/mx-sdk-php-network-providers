@@ -13,14 +13,17 @@ it('creates an api network provider', function () {
 });
 
 it('creates an api network provider with a custom http client', function () {
-    $expectedResponse = new Response(200, [], '[]');
+    $responses = [
+        new Response(200, [], '[]'),
+    ];
+
     $transactions = [];
 
     $options = [
         'base_uri' => 'https://api.aaa.com',
     ];
 
-    $client = ClientFactory::mock($expectedResponse, $transactions, $options);
+    $client = ClientFactory::mock($responses, $transactions, $options);
 
     $provider = NetworkProvider::api('https://api.bbb.com', $client);
 
