@@ -24,7 +24,9 @@ class TransactionEndpoints
     public function send(Transaction $tx): TransactionSendResult
     {
         return TransactionSendResult::fromApiResponse(
-            $this->client->request('POST', "/transactions", $tx->toSendable())
+            $this->client->request('POST', "/transactions", [
+                'json' => $tx->toSendable(),
+            ]),
         );
     }
 }
