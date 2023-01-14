@@ -4,7 +4,7 @@ namespace Peerme\MxProviders\Entities;
 
 use Peerme\MxProviders\Api\HasApiResponses;
 
-final class MexToken implements IEntity
+final class DexToken implements IEntity
 {
     use HasApiResponses;
 

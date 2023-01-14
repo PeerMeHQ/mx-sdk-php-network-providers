@@ -5,7 +5,7 @@ namespace Peerme\MxProviders\Api\Endpoints;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
 use Peerme\MxProviders\Entities\DexPair;
-use Peerme\MxProviders\Entities\MexToken;
+use Peerme\MxProviders\Entities\DexToken;
 
 class DexEndpoints
 {
@@ -24,7 +24,7 @@ class DexEndpoints
 
     public function getTokens(): Collection
     {
-        return MexToken::fromApiResponse(
+        return DexToken::fromApiResponse(
             $this->client->request('GET', "/mex/tokens"),
             isCollection: true,
         );
