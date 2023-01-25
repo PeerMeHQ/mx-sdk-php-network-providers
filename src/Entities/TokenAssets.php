@@ -14,6 +14,7 @@ final class TokenAssets implements IEntity
         public string $pngUrl,
         public string $svgUrl,
         public ?string $website = null,
+        public array $social = [],
     ) {
     }
 }
