@@ -7,7 +7,7 @@ it('gets a collection by id', function () {
     $client = createMockedHttpClientWithResponse('collections/collection.json');
 
     $actual = (new CollectionEndpoints($client))
-        ->getById('VNFT-507997');
+        ->getById('EBUDDIES-e18a04');
 
     assertMatchesResponseSnapshot($actual);
 
