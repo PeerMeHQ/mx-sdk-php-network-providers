@@ -14,18 +14,22 @@ class DexEndpoints
     ) {
     }
 
-    public function getPairs(): Collection
+    public function getPairs(array $params = []): Collection
     {
         return DexPair::fromApiResponse(
-            $this->client->request('GET', "/mex/pairs"),
+            $this->client->request('GET', '/mex/pairs', [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
 
-    public function getTokens(): Collection
+    public function getTokens(array $params = []): Collection
     {
         return DexToken::fromApiResponse(
-            $this->client->request('GET', "/mex/tokens"),
+            $this->client->request('GET', '/mex/tokens', [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }

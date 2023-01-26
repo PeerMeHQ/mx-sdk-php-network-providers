@@ -17,38 +17,50 @@ class AccountEndpoints
     ) {
     }
 
-    public function getByAddress(string $address): Account
+    public function getByAddress(string $address, array $params = []): Account
     {
         return Account::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}")
+            $this->client->request('GET', "/accounts/{$address}", [
+                'query' => $params,
+            ]),
         );
     }
 
     public function getNfts(string $address, array $params = []): Collection
     {
         return Nft::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/nfts", $params),
-        isCollection: true);
+            $this->client->request('GET', "/accounts/{$address}/nfts", [
+                'query' => $params,
+            ]),
+            isCollection: true,
+        );
     }
 
     public function getTokens(string $address, array $params = []): Collection
     {
         return TokenDetailedWithBalance::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/tokens", $params),
-        isCollection: true);
+            $this->client->request('GET', "/accounts/{$address}/tokens", [
+                'query' => $params,
+            ]),
+            isCollection: true,
+        );
     }
 
-    public function getToken(string $address, string $token): TokenDetailedWithBalance
+    public function getToken(string $address, string $token, array $params = []): TokenDetailedWithBalance
     {
         return TokenDetailedWithBalance::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/tokens/{$token}")
+            $this->client->request('GET', "/accounts/{$address}/tokens/{$token}", [
+                'query' => $params,
+            ]),
         );
     }
 
     public function getCollections(string $address, array $params = []): Collection
     {
         return NftCollectionAccount::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/collections", $params),
+            $this->client->request('GET', "/accounts/{$address}/collections", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
@@ -56,14 +68,18 @@ class AccountEndpoints
     public function getCollection(string $address, string $collection, array $params = []): NftCollectionAccount
     {
         return NftCollectionAccount::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/collections/{$collection}", $params),
+            $this->client->request('GET', "/accounts/{$address}/collections/{$collection}", [
+                'query' => $params,
+            ]),
         );
     }
 
     public function getRolesCollections(string $address, array $params = []): Collection
     {
         return NftCollectionRole::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/roles/collections", $params),
+            $this->client->request('GET', "/accounts/{$address}/roles/collections", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
@@ -71,7 +87,9 @@ class AccountEndpoints
     public function getRolesCollection(string $address, string $collection, array $params = []): NftCollectionRole
     {
         return NftCollectionRole::fromApiResponse(
-            $this->client->request('GET', "/accounts/{$address}/roles/collections/{$collection}", $params),
+            $this->client->request('GET', "/accounts/{$address}/roles/collections/{$collection}", [
+                'query' => $params,
+            ]),
         );
     }
 }

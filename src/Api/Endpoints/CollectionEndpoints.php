@@ -18,14 +18,18 @@ class CollectionEndpoints
     public function getById(string $identifier, array $params = []): NftCollection
     {
         return NftCollection::fromApiResponse(
-            $this->client->request('GET', "/collections/{$identifier}", $params),
+            $this->client->request('GET', "/collections/{$identifier}", [
+                'query' => $params,
+            ]),
         );
     }
 
     public function getNftsById(string $identifier, array $params = []): Collection
     {
         return Nft::fromApiResponse(
-            $this->client->request('GET', "/collections/{$identifier}/nfts", $params),
+            $this->client->request('GET', "/collections/{$identifier}/nfts", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
@@ -33,7 +37,9 @@ class CollectionEndpoints
     public function getAccounts(string $tokenId, array $params = []): Collection
     {
         return CollectionAccount::fromApiResponse(
-            $this->client->request('GET', "/collections/{$tokenId}/accounts", $params),
+            $this->client->request('GET', "/collections/{$tokenId}/accounts", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }

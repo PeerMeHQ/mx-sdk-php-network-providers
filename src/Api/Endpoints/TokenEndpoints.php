@@ -16,24 +16,30 @@ class TokenEndpoints
     ) {
     }
 
-    public function getById(string $tokenId): TokenDetailed
+    public function getById(string $tokenId, array $params = []): TokenDetailed
     {
         return TokenDetailed::fromApiResponse(
-            $this->client->request('GET', "/tokens/{$tokenId}")
+            $this->client->request('GET', "/tokens/{$tokenId}", [
+                'query' => $params,
+            ]),
         );
     }
 
     public function getAccounts(string $tokenId, array $params = []): Collection
     {
         return TokenAccount::fromApiResponse(
-            $this->client->request('GET', "/tokens/{$tokenId}/accounts", $params),
+            $this->client->request('GET', "/tokens/{$tokenId}/accounts", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
 
-    public function getAccountsCount(string $tokenId): int
+    public function getAccountsCount(string $tokenId, array $params = []): int
     {
-        return (int) $this->client->request('GET', "/tokens/{$tokenId}/accounts/count")
+        return (int) $this->client->request('GET', "/tokens/{$tokenId}/accounts/count", [
+            'query' => $params,
+        ])
             ->getBody()
             ->getContents();
     }
@@ -41,7 +47,9 @@ class TokenEndpoints
     public function getTransactions(string $tokenId, array $params = []): Collection
     {
         return Transaction::fromApiResponse(
-            $this->client->request('GET', "/tokens/{$tokenId}/transactions", $params),
+            $this->client->request('GET', "/tokens/{$tokenId}/transactions", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }
@@ -49,7 +57,9 @@ class TokenEndpoints
     public function getRoles(string $tokenId, array $params = []): Collection
     {
         return TokenAddressRoles::fromApiResponse(
-            $this->client->request('GET', "/tokens/{$tokenId}/roles", $params),
+            $this->client->request('GET', "/tokens/{$tokenId}/roles", [
+                'query' => $params,
+            ]),
             isCollection: true,
         );
     }

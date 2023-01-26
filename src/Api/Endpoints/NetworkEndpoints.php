@@ -13,17 +13,21 @@ final class NetworkEndpoints
     ) {
     }
 
-    public function getEconomics(): Economics
+    public function getEconomics(array $params = []): Economics
     {
         return Economics::fromApiResponse(
-            $this->client->request('GET', "/economics")
+            $this->client->request('GET', '/economics', [
+                'query' => $params,
+            ]),
         );
     }
 
-    public function getNetworkConstants(): NetworkConstants
+    public function getNetworkConstants(array $params = []): NetworkConstants
     {
         return NetworkConstants::fromApiResponse(
-            $this->client->request('GET', "/constants")
+            $this->client->request('GET', '/constants', [
+                'query' => $params,
+            ]),
         );
     }
 }
