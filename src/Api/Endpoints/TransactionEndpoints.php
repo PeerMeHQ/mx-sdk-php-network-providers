@@ -14,10 +14,12 @@ class TransactionEndpoints
     ) {
     }
 
-    public function getByHash(string $txHash): TransactionDetailed
+    public function getByHash(string $txHash, array $params = []): TransactionDetailed
     {
         return TransactionDetailed::fromApiResponse(
-            $this->client->request('GET', "/transactions/{$txHash}")
+            $this->client->request('GET', "/transactions/{$txHash}", [
+                'query' => $params,
+            ]),
         );
     }
 
