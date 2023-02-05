@@ -26,6 +26,7 @@ final class SmartContractResult implements IEntity
         public ?string $originalTxHash = '',
         public ?string $callType = '',
         public ?string $miniBlockHash = '',
+        public ?TransactionLog $logs = null,
         public ?string $returnMessage = '',
     ) {
     }
@@ -38,6 +39,7 @@ final class SmartContractResult implements IEntity
             'value' => isset($res['value']) ? BigInteger::of($res['value']) : null,
             'sender' => isset($res['sender']) ? Address::fromBech32($res['sender']) : null,
             'receiver' => isset($res['receiver']) ? Address::fromBech32($res['receiver']) : null,
+            'logs' => isset($res['logs']['id']) ? TransactionLog::fromArray($res['logs']) : null,
         ]);
     }
 }

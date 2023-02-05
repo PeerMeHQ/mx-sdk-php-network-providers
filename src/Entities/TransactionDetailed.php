@@ -51,4 +51,12 @@ final class TransactionDetailed implements IEntity
             'operations' => isset($res['operations']) ? TransactionOperation::fromArrayMultiple($res['operations']) : collect(),
         ]);
     }
+
+    public function getAllEvents(): Collection
+    {
+        return $this->logs->events
+            ->concat($this->results->map(fn (SmartContractResult $result) => $result->logs?->events))
+            ->flatten()
+            ->filter();
+    }
 }
