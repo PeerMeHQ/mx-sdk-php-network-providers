@@ -59,4 +59,12 @@ final class TransactionDetailed implements IEntity
             ->flatten()
             ->filter();
     }
+
+    public function hasContractError(): bool
+    {
+        $errorEventIdentifier = 'signalError';
+
+        return $this->getAllEvents()
+            ->contains(fn (TransactionLogEvent $event) => $event->identifier === $errorEventIdentifier);
+    }
 }
