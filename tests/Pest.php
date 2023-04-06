@@ -6,6 +6,7 @@ use Peerme\MxProviders\ClientFactory;
 use Peerme\MxProviders\Tests\ResponseSnapshotDriver;
 use Spatie\Snapshots\MatchesSnapshots;
 
+uses()->compact();
 uses(MatchesSnapshots::class)->in(__DIR__);
 
 function createMockedHttpClientWithResponse(array|string|int $value): ClientInterface
