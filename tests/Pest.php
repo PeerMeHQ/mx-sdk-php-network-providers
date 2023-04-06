@@ -3,8 +3,8 @@
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
 use Peerme\MxProviders\ClientFactory;
+use Peerme\MxProviders\Tests\MatchesSnapshots;
 use Peerme\MxProviders\Tests\ResponseSnapshotDriver;
-use Spatie\Snapshots\MatchesSnapshots;
 
 uses()->compact();
 uses(MatchesSnapshots::class)->in(__DIR__);
