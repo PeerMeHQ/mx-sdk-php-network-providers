@@ -9,6 +9,7 @@ use Peerme\MxProviders\Entities\Nft;
 use Peerme\MxProviders\Entities\NftCollectionAccount;
 use Peerme\MxProviders\Entities\NftCollectionRole;
 use Peerme\MxProviders\Entities\TokenDetailedWithBalance;
+use Peerme\MxProviders\Entities\Transaction;
 
 class AccountEndpoints
 {
@@ -90,6 +91,16 @@ class AccountEndpoints
             $this->client->request('GET', "/accounts/{$address}/roles/collections/{$collection}", [
                 'query' => $params,
             ]),
+        );
+    }
+
+    public function getTransactions(string $address, array $params = []): Collection
+    {
+        return Transaction::fromApiResponse(
+            $this->client->request('GET', "/accounts/{$address}/transactions", [
+                'query' => $params,
+            ]),
+            isCollection: true,
         );
     }
 }

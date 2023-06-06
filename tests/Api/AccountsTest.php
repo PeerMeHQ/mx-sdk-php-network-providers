@@ -66,7 +66,6 @@ it('getCollection - gets collection owned by the user and given id', function ()
     assertMatchesResponseSnapshot($actual);
 });
 
-
 it('getRolesCollections - gets role collections owned by the user', function () {
     $client = createMockedHttpClientWithResponse('accounts/role-collections.json');
 
@@ -81,6 +80,15 @@ it('getRolesCollection - gets collection owned by the user and given id', functi
 
     $actual = (new AccountEndpoints($client))
         ->getRolesCollection('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc', 'SING-3c59b4');
+
+    assertMatchesResponseSnapshot($actual);
+});
+
+it('getTransactions - gets transactions of an account', function () {
+    $client = createMockedHttpClientWithResponse('accounts/transactions.json');
+
+    $actual = (new AccountEndpoints($client))
+        ->getTransactions('erd1660va6y429mxz4dkgek0ssny8tccaaaaaaaaaabbbbbbbbbbcccccccccc');
 
     assertMatchesResponseSnapshot($actual);
 });
