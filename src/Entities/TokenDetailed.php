@@ -27,6 +27,9 @@ final class TokenDetailed implements IEntity
         public string $supply,
         public ?string $minted = null,
         public ?string $burnt = null,
+        public ?string $type = null,
+        public ?float $price = null,
+        public ?float $marketCap = null,
     ) {
     }
 

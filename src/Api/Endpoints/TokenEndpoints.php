@@ -25,6 +25,16 @@ class TokenEndpoints
         );
     }
 
+    public function getTokens(array $params = []): Collection
+    {
+        return TokenDetailed::fromApiResponse(
+            $this->client->request('GET', "/tokens", [
+                'query' => $params,
+            ]),
+            isCollection: true,
+        );
+    }
+
     public function getAccounts(string $tokenId, array $params = []): Collection
     {
         return TokenAccount::fromApiResponse(
