@@ -11,6 +11,15 @@ it('getById - gets the token', function () {
     assertMatchesResponseSnapshot($actual);
 });
 
+it('getTokens - gets tokens', function () {
+    $client = createMockedHttpClientWithResponse('tokens/tokens.json');
+
+    $actual = (new TokenEndpoints($client))
+        ->getTokens();
+
+    assertMatchesResponseSnapshot($actual);
+});
+
 it('getAccounts - gets the token accounts', function () {
     $client = createMockedHttpClientWithResponse('tokens/accounts.json');
 
